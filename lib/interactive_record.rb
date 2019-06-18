@@ -2,37 +2,37 @@ require_relative "../config/environment.rb"
 require 'active_support/inflector'
 
 class InteractiveRecord
-  
+
   # def initialize(objects={})
   #   objects.each do |key, value|
   #     self.send("#{key}=", value)
   #   end
   # end
-  
-  # def self.table_name 
+
+  # def self.table_name
   #   self.to_s.downcase.pluralize
-  # end 
-  
+  # end
+
   # def self.column_names
-  #   DB[:conn].results_as_hash = true 
+  #   DB[:conn].results_as_hash = true
   #   table_col = DB[:conn].execute("PRAGMA table_info(#{table_name})")
   #   column_names = []
-    
+
   #   table_col.each do |column|
   #     column_names << column["name"]
   #   end
 
   #   column_names.compact
   # end
-  
+
   # def table_name_for_insert
   #   self.class.table_name
   # end
-  
+
   # def col_names_for_insert
   #   self.class.column_names.delete_if {|column| column == "id"}.join(", ")
   # end
-  
+
   # def values_for_insert
   #   values = []
 
@@ -40,8 +40,8 @@ class InteractiveRecord
   #     values << "'#{send(name)}'" unless send(name).nil?
   #   end
   #   values.join(", ")
-  # end 
-  
+  # end
+
   # def save
   #   sql = <<-SQL
   #     INSERT INTO #{table_name_for_insert}(#{col_names_for_insert})
@@ -61,14 +61,14 @@ class InteractiveRecord
   # # def self.find_by(hash)
   # #   sql = "SELECT * FROM #{self.table_name} WHERE #{hash.keys[0].to_s} = '#{hash.values[0].to_s}'"
   # #   DB[:conn].execute(sql)
-  # # end 
-  
-  
+  # # end
+
+
   def initialize(options={})
     options.each do |property, value|
       self.send("#{property}=", value)
     end
-  end 
+  end
 
    def self.table_name
     self.to_s.downcase.pluralize
@@ -121,5 +121,5 @@ class InteractiveRecord
    def col_names_for_insert
     self.class.column_names.delete_if {|col| col == "id"}.join(", ")
   end
-  
+
 end
